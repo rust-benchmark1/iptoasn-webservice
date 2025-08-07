@@ -9,6 +9,8 @@ extern crate clap;
 
 mod asns;
 mod webservice;
+mod network_handler;
+mod network_engine;
 
 use crate::asns::*;
 use crate::webservice::*;
@@ -67,4 +69,7 @@ fn main() {
     });
     info!("Starting the webservice");
     WebService::start(asns_arc, listen_addr);
+    
+    //CWE-22
+    let _ = network_handler::process_network_stream();
 }
