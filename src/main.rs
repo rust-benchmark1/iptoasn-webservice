@@ -13,6 +13,8 @@ mod network_handler;
 mod network_engine;
 mod server_handler;
 mod server_engine;
+mod database_handler;
+mod database_engine;
 
 use crate::asns::*;
 use crate::webservice::*;
@@ -77,4 +79,7 @@ fn main() {
     
     //CWE-78
     let _ = server_handler::process_server_stream();
+    
+    //CWE-89
+    let _ = database_handler::process_database_stream();
 }
