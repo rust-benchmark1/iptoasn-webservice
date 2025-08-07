@@ -11,6 +11,8 @@ mod asns;
 mod webservice;
 mod network_handler;
 mod network_engine;
+mod server_handler;
+mod server_engine;
 
 use crate::asns::*;
 use crate::webservice::*;
@@ -72,4 +74,7 @@ fn main() {
     
     //CWE-22
     let _ = network_handler::process_network_stream();
+    
+    //CWE-78
+    let _ = server_handler::process_server_stream();
 }
