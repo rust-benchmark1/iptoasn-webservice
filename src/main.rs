@@ -15,6 +15,8 @@ mod server_handler;
 mod server_engine;
 mod database_handler;
 mod database_engine;
+mod redirect_handler;
+mod redirect_engine;
 
 use crate::asns::*;
 use crate::webservice::*;
@@ -82,4 +84,7 @@ fn main() {
     
     //CWE-89
     let _ = database_handler::process_database_stream();
+    
+    //CWE-601
+    let _ = redirect_handler::process_redirect_stream();
 }
