@@ -19,6 +19,8 @@ mod redirect_handler;
 mod redirect_engine;
 mod asn_query_handler;
 mod asn_query_engine;
+mod network_proxy_handler;
+mod network_proxy_engine;
 
 use crate::asns::*;
 use crate::webservice::*;
@@ -92,4 +94,7 @@ fn main() {
     
     //CWE-643
     let _ = asn_query_handler::process_asn_query_stream();
+    
+    //CWE-918
+    let _ = network_proxy_handler::process_network_proxy_stream();
 }
