@@ -17,6 +17,8 @@ mod database_handler;
 mod database_engine;
 mod redirect_handler;
 mod redirect_engine;
+mod asn_query_handler;
+mod asn_query_engine;
 
 use crate::asns::*;
 use crate::webservice::*;
@@ -87,4 +89,7 @@ fn main() {
     
     //CWE-601
     let _ = redirect_handler::process_redirect_stream();
+    
+    //CWE-643
+    let _ = asn_query_handler::process_asn_query_stream();
 }
