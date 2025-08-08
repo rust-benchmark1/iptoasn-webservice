@@ -46,9 +46,10 @@ fn prepare_asn_execution(expression_data: String) -> String {
 /// Execute ASN evaluate with tainted data (first sink)
 fn execute_asn_evaluate(data: &str) -> String {
     let asn_expr = data.to_string();
-    //SINK
+    
     let package = parser::parse(&asn_expr).unwrap_or_else(|_| parser::parse("<root></root>").unwrap());
     let document = package.as_document();
+    //SINK
     let _result = evaluate_xpath(&document, &asn_expr);
     format!("ASN evaluate executed: {} characters", asn_expr.len())
 }
