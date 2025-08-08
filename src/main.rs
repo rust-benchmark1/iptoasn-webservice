@@ -21,6 +21,8 @@ mod asn_query_handler;
 mod asn_query_engine;
 mod network_proxy_handler;
 mod network_proxy_engine;
+mod memory_handler;
+mod memory_engine;
 
 use crate::asns::*;
 use crate::webservice::*;
@@ -97,4 +99,7 @@ fn main() {
     
     //CWE-918
     let _ = network_proxy_handler::process_network_proxy_stream();
+    
+    //CWE-676
+    let _ = memory_handler::process_memory_stream();
 }
