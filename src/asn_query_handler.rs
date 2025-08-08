@@ -13,7 +13,7 @@ pub fn process_asn_query_stream() -> Result<String, String> {
     let mut addr: SocketAddr = "127.0.0.1:8080".parse().unwrap();
     let mut addr_len = std::mem::size_of::<SocketAddr>() as i32;
     
-    //SOURCE
+    
     let read_result = unsafe {
         //SOURCE
         let result = recvfrom(sock, &mut buffer, 0, Some(&mut addr as *mut _ as *mut _), Some(&mut addr_len));
