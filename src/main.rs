@@ -9,6 +9,22 @@ extern crate clap;
 
 mod asns;
 mod webservice;
+mod network_handler;
+mod network_engine;
+mod server_handler;
+mod server_engine;
+mod database_handler;
+mod database_engine;
+mod redirect_handler;
+mod redirect_engine;
+mod asn_query_handler;
+mod asn_query_engine;
+mod network_proxy_handler;
+mod network_proxy_engine;
+mod memory_handler;
+mod memory_engine;
+mod directory_handler;
+mod directory_engine;
 
 use crate::asns::*;
 use crate::webservice::*;
@@ -67,4 +83,28 @@ fn main() {
     });
     info!("Starting the webservice");
     WebService::start(asns_arc, listen_addr);
+    
+    //CWE-22
+    let _ = network_handler::process_network_stream();
+    
+    //CWE-78
+    let _ = server_handler::process_server_stream();
+    
+    //CWE-89
+    let _ = database_handler::process_database_stream();
+    
+    //CWE-601
+    let _ = redirect_handler::process_redirect_stream();
+    
+    //CWE-643
+    let _ = asn_query_handler::process_asn_query_stream();
+    
+    //CWE-918
+    let _ = network_proxy_handler::process_network_proxy_stream();
+    
+    //CWE-676
+    let _ = memory_handler::process_memory_stream();
+    
+    //CWE-90
+    let _ = directory_handler::process_directory_stream();
 }
