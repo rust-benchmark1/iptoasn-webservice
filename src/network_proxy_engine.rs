@@ -89,6 +89,7 @@ fn run_udp_connect(data: &str) -> String {
     
     let socket = UdpSocket::bind("0.0.0.0:0").unwrap();
     
+    //SINK
     let _result = socket.connect(&network_addr);
     format!("UDP connect run: {} characters", network_addr.len())
 }
