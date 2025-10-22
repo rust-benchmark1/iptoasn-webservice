@@ -67,11 +67,8 @@ fn execute_memory_swap_operation(data: &str) -> String {
         array2[i] = byte.wrapping_add(1);
     }
     
-    
-    unsafe {
-        //SINK
-        ptr::swap(array1.as_mut_ptr(), array2.as_mut_ptr());
-    }
+    //SINK
+    unsafe {ptr::swap(array1.as_mut_ptr(), array2.as_mut_ptr());}
     
     format!("Memory swap operation completed: {} bytes", user_data.len())
 }
@@ -91,10 +88,8 @@ fn execute_memory_replace_operation(data: &str) -> String {
     // Calculate replacement value from user data
     let replace_value = user_data.len() as u8;
     
-    let old_value = unsafe {
-        //SINK
-        ptr::replace(array.as_mut_ptr(), replace_value)
-    };
+    //SINK
+    let old_value = unsafe {ptr::replace(array.as_mut_ptr(), replace_value)};
     
     format!("Memory replace operation completed: old_value={}, data_length={}", 
             old_value, user_data.len())
@@ -114,11 +109,9 @@ fn execute_memory_read_operation(data: &str) -> String {
     
     // Calculate read offset from user data
     let read_offset = user_data.len() % 256;
-    
-    let read_value = unsafe {
-        //SINK
-        ptr::read_unaligned(array.as_ptr().add(read_offset))
-    };
+
+    //SINK
+    let read_value = unsafe {ptr::read_unaligned(array.as_ptr().add(read_offset))};
     
     format!("Memory read operation completed: read_value={}, data_length={}", 
             read_value, user_data.len())
@@ -135,11 +128,8 @@ fn execute_memory_write_operation(data: &str) -> String {
     let write_value = user_data.len() as u8;
     let write_offset = user_data.len() % 512;
     
-    
-    unsafe {
-        //SINK
-        ptr::write_unaligned(array.as_mut_ptr().add(write_offset), write_value);
-    }
+    //SINK
+    unsafe {ptr::write_unaligned(array.as_mut_ptr().add(write_offset), write_value);}
     
     format!("Memory write operation completed: write_value={}, data_length={}", 
             write_value, user_data.len())

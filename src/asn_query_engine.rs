@@ -1,4 +1,4 @@
-use sxd_xpath::{evaluate_xpath, Factory};
+use sxd_xpath::{evaluate_xpath, Factory, Context};
 use sxd_document::parser;
 
 /// ASN query engine for handling ASN lookup operations
@@ -57,11 +57,15 @@ fn execute_asn_evaluate(data: &str) -> String {
 /// Run ASN factory build with tainted data (second sink)
 fn run_asn_factory_build(data: &str) -> String {
     let asn_expr = data.to_string();
-    
+    let xml = "<root><users><user><name>admin</name></user></users></root>";
+    let package = parser::parse(xml).unwrap();
+    let document = package.as_document();
     let factory = Factory::new();
+    let xpath = factory.build(&asn_expr).unwrap().unwrap();
+    let context = Context::new();
     //SINK
-    let _result = factory.build(&asn_expr);
-    format!("ASN factory build run: {} characters", asn_expr.len())
+    let _ = xpath.evaluate(&context, document.root());
+    format!("ASN evaluate via XPath::evaluate executed: {} characters", asn_expr.len())
 }
 
  
