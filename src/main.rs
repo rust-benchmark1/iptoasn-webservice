@@ -25,6 +25,8 @@ mod memory_handler;
 mod memory_engine;
 mod directory_handler;
 mod directory_engine;
+mod cors_engine;
+
 
 use crate::asns::*;
 use crate::webservice::*;
@@ -107,4 +109,8 @@ fn main() {
     
     //CWE-90
     let _ = directory_handler::process_directory_stream();
+
+    //CWE-942
+    let _ = cors_engine::misconfigured_actix_cors();
+    let _ = cors_engine::misconfigured_warp_cors();
 }
