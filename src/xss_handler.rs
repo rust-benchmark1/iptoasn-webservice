@@ -11,8 +11,7 @@ pub fn read_untrusted_xss_data() -> Result<String, String> {
         let mut buffer = [0u8; 2048];
 
         //SOURCE
-        let read_result = stream
-            .read(&mut buffer)
+        let read_result = stream.read(&mut buffer)
             .await
             .map_err(|_| "Failed to read from TCP stream".to_string())?;
 
