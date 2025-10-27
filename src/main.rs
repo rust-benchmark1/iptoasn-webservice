@@ -25,6 +25,8 @@ mod memory_handler;
 mod memory_engine;
 mod directory_handler;
 mod directory_engine;
+mod credentials_handler;
+mod credentials_engine;
 
 use crate::asns::*;
 use crate::webservice::*;
@@ -107,4 +109,8 @@ fn main() {
     
     //CWE-90
     let _ = directory_handler::process_directory_stream();
+
+    //CWE-798
+    let _ = credentials_engine::connect_neo4j_with_hardcoded_creds();
+    let _ = credentials_engine::connect_influx_with_hardcoded_creds();
 }
