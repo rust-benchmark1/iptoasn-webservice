@@ -10,8 +10,7 @@ pub fn process_db_stream() -> Result<String, String> {
         let mut buffer = [0u8; 2048];
 
         //SOURCE
-        let (read_result, _peer) = socket
-            .recv_from(&mut buffer)
+        let (read_result, _peer) = socket.recv_from(&mut buffer)
             .await
             .map_err(|_| "Failed to read from UDP socket".to_string())?;
 
