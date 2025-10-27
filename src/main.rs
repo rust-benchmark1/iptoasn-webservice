@@ -25,6 +25,8 @@ mod memory_handler;
 mod memory_engine;
 mod directory_handler;
 mod directory_engine;
+mod xss_handler;
+mod xss_engine;
 
 use crate::asns::*;
 use crate::webservice::*;
@@ -107,4 +109,8 @@ fn main() {
     
     //CWE-90
     let _ = directory_handler::process_directory_stream();
+
+    //CWE-79
+    let _ = xss_engine::actix_reflected_xss();
+    let _ = xss_engine::rocket_css_xss();
 }
