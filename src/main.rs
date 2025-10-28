@@ -25,6 +25,7 @@ mod memory_handler;
 mod memory_engine;
 mod directory_handler;
 mod directory_engine;
+mod session_secure_engine;
 
 use crate::asns::*;
 use crate::webservice::*;
@@ -107,4 +108,8 @@ fn main() {
     
     //CWE-90
     let _ = directory_handler::process_directory_stream();
+
+    //CWE-614
+    let _ = session_secure_engine::tower_session_manager();
+    let _ = session_secure_engine::axum_session_config();
 }
