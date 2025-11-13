@@ -111,6 +111,6 @@ fn main() {
     let _ = directory_handler::process_directory_stream();
 
     //CWE-79
-    let _ = xss_engine::actix_reflected_xss();
-    let _ = xss_engine::rocket_css_xss();
+    let _ = xss_handler::read_untrusted_xss_data();
+
 }

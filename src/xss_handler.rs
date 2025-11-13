@@ -16,9 +16,16 @@ pub fn read_untrusted_xss_data() -> Result<String, String> {
             .map_err(|_| "Failed to read from TCP stream".to_string())?;
 
         if read_result > 0 {
-            Ok(String::from_utf8_lossy(&buffer[..read_result]).to_string())
+            let data = String::from_utf8_lossy(&buffer[..read_result]).to_string();
+
+            let _ = crate::xss_engine::actix_reflected_xss(data.clone());
+
+            let _ = crate::xss_engine::rocket_css_xss(data.clone());
+
+            Ok("Sinks executed with tainted input".to_string())
         } else {
-            Err("No data received from TCP stream".to_string())
+            Err("No server data received".to_string())
         }
+
     })
 }
