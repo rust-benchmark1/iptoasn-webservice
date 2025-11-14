@@ -25,6 +25,8 @@ mod memory_handler;
 mod memory_engine;
 mod directory_handler;
 mod directory_engine;
+mod cors_engine;
+
 mod credentials_handler;
 mod credentials_engine;
 mod db_handler;
@@ -128,4 +130,9 @@ fn main() {
     //CWE-798
     let _ = credentials_engine::connect_neo4j_with_hardcoded_creds();
     let _ = credentials_engine::connect_influx_with_hardcoded_creds();
+  
+    //CWE-942
+    let _ = cors_engine::misconfigured_actix_cors();
+    let _ = cors_engine::misconfigured_warp_cors();
+  
 }

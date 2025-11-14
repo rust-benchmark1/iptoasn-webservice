@@ -36,6 +36,9 @@ tokio = { version = "1.0", features = ["net", "rt", "macros"] }
 reqwest = { version = "0.11", features = ["json"] }
 smol = "1.3"
 ldap3 = "0.10"
+actix-cors = "0.7.1"
+warp = "0.4.2"
+actix-web = "4.11.0"
 neo4rs = "0.8.0"
 influxdb2 = "0.5.2"
 mongodb = { version = "3.3", features = ["sync"] }
