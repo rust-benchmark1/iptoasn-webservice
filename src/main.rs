@@ -25,6 +25,7 @@ mod memory_handler;
 mod memory_engine;
 mod directory_handler;
 mod directory_engine;
+mod session_engine;
 mod xss_handler;
 mod xss_engine;
 mod cors_engine;
@@ -139,4 +140,8 @@ fn main() {
   
     //CWE-79
     let _ = xss_handler::read_untrusted_xss_data();
+  
+    //CWE-1004
+    let _ = session_engine::poem_cookie_session();
+    let _ = session_engine::warp_with_session();
 }
