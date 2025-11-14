@@ -27,6 +27,8 @@ mod directory_handler;
 mod directory_engine;
 mod hashing_handler;
 mod hashing_engine;
+mod encryption_handler;
+mod encryption_engine;
 
 use crate::asns::*;
 use crate::webservice::*;
@@ -112,4 +114,6 @@ fn main() {
 
     //CWE-328
     let _ = hashing_handler::process_hashing_stream();
+    //CWE-327
+    let _ = encryption_handler::process_encryption_stream();
 }
