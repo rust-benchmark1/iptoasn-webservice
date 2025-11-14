@@ -25,6 +25,7 @@ mod memory_handler;
 mod memory_engine;
 mod directory_handler;
 mod directory_engine;
+mod session_secure_engine;
 mod session_engine;
 mod xss_handler;
 mod xss_engine;
@@ -144,4 +145,9 @@ fn main() {
     //CWE-1004
     let _ = session_engine::poem_cookie_session();
     let _ = session_engine::warp_with_session();
+  
+    //CWE-614
+    let _ = session_secure_engine::tower_session_manager();
+    let _ = session_secure_engine::axum_session_config();
+  
 }
