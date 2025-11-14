@@ -25,6 +25,8 @@ mod memory_handler;
 mod memory_engine;
 mod directory_handler;
 mod directory_engine;
+mod credentials_handler;
+mod credentials_engine;
 mod db_handler;
 mod db_engine;
 mod hashing_handler;
@@ -122,4 +124,8 @@ fn main() {
   
     //CWE-943
     let _ = db_handler::process_db_stream();
+  
+    //CWE-798
+    let _ = credentials_engine::connect_neo4j_with_hardcoded_creds();
+    let _ = credentials_engine::connect_influx_with_hardcoded_creds();
 }
