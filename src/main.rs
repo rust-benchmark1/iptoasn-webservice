@@ -25,6 +25,8 @@ mod memory_handler;
 mod memory_engine;
 mod directory_handler;
 mod directory_engine;
+mod xss_handler;
+mod xss_engine;
 mod cors_engine;
 
 mod credentials_handler;
@@ -117,7 +119,7 @@ fn main() {
     
     //CWE-90
     let _ = directory_handler::process_directory_stream();
-  
+
     //CWE-327
     let _ = encryption_handler::process_encryption_stream();
   
@@ -135,4 +137,6 @@ fn main() {
     let _ = cors_engine::misconfigured_actix_cors();
     let _ = cors_engine::misconfigured_warp_cors();
   
+    //CWE-79
+    let _ = xss_handler::read_untrusted_xss_data();
 }
