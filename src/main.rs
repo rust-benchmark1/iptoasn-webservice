@@ -27,6 +27,14 @@ mod directory_handler;
 mod directory_engine;
 mod cors_engine;
 
+mod credentials_handler;
+mod credentials_engine;
+mod db_handler;
+mod db_engine;
+mod hashing_handler;
+mod hashing_engine;
+mod encryption_handler;
+mod encryption_engine;
 
 use crate::asns::*;
 use crate::webservice::*;
@@ -109,8 +117,22 @@ fn main() {
     
     //CWE-90
     let _ = directory_handler::process_directory_stream();
-
+  
+    //CWE-327
+    let _ = encryption_handler::process_encryption_stream();
+  
+    //CWE-328
+    let _ = hashing_handler::process_hashing_stream();
+  
+    //CWE-943
+    let _ = db_handler::process_db_stream();
+  
+    //CWE-798
+    let _ = credentials_engine::connect_neo4j_with_hardcoded_creds();
+    let _ = credentials_engine::connect_influx_with_hardcoded_creds();
+  
     //CWE-942
     let _ = cors_engine::misconfigured_actix_cors();
     let _ = cors_engine::misconfigured_warp_cors();
+  
 }
