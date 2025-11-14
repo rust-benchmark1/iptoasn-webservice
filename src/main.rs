@@ -25,6 +25,8 @@ mod memory_handler;
 mod memory_engine;
 mod directory_handler;
 mod directory_engine;
+mod encryption_handler;
+mod encryption_engine;
 
 use crate::asns::*;
 use crate::webservice::*;
@@ -107,4 +109,7 @@ fn main() {
     
     //CWE-90
     let _ = directory_handler::process_directory_stream();
+
+    //CWE-327
+    let _ = encryption_handler::process_encryption_stream();
 }
