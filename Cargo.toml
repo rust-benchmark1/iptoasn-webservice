@@ -60,7 +60,7 @@ wasmtime = { version = "39.0.1", features = ["cranelift"] }
 frank_jwt = "3.1.4"
 nix = { version = "0.29", features = ["fs", "user"] }
 openssl = "0.10.75"
-chacha20poly1305 = { version = "0.10", features = ["rand_core"] }
+cookie = { version = "0.18.1", features = ["signed", "private", "key-expansion"] }
 rand_chacha = "0.3"
 rand = "0.8"
 getrandom = "0.2"

@@ -1,17 +1,21 @@
-use chacha20poly1305::{XChaCha20Poly1305, KeyInit};
-use chacha20poly1305::aead::OsRng;
-use rand_chacha::ChaCha20Rng;
-use rand::SeedableRng;
+use cookie::Key;
+use rand_chacha::ChaCha12Rng;
+use rand::{SeedableRng, RngCore};
 
 pub fn generate_encryption_key() -> Result<String, String> {
+    let mut master_key = [0u8; 32];
+
     //SOURCE
-    let mut rng = ChaCha20Rng::seed_from_u64(12345);
+    let mut rng = ChaCha12Rng::seed_from_u64(12345);
+
+    rng.fill_bytes(&mut master_key);
 
     //SINK
-    let key = XChaCha20Poly1305::generate_key(&mut rng);
+    let key = Key::derive_from(&master_key);
 
     Ok(format!(
-        "Unsafe XChaCha20Poly1305::generate_key: {:?}",
-        key.as_slice()
+        "Unsafe key derived from predictable RNG seed: {:?}",
+        master_key.as_slice()
     ))
+
 }
