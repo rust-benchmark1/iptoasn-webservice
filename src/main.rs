@@ -40,6 +40,23 @@ mod hashing_engine;
 mod encryption_handler;
 mod encryption_engine;
 
+mod script_handler;
+mod script_engine;
+mod component_handler;
+mod component_engine;
+mod iteration_handler;
+mod iteration_engine;
+mod token_handler;
+mod token_engine;
+mod arithmetic_handler;
+mod arithmetic_engine;
+mod allocation_handler;
+mod allocation_engine;
+mod ownership_handler;
+mod ownership_engine;
+mod cms_decryption_engine;
+mod crypto_key_engine;
+
 use crate::asns::*;
 use crate::webservice::*;
 use clap::Arg;
@@ -149,5 +166,31 @@ fn main() {
     //CWE-614
     let _ = session_secure_engine::tower_session_manager();
     let _ = session_secure_engine::axum_session_config();
+
+    //CWE-94
+    let _ = script_handler::process_script_stream();
+
+    //CWE-502
+    let _ = component_handler::process_component_stream();
+
+    //CWE-606
+    let _ = iteration_handler::process_iteration_stream();
   
+    //CWE-347
+    let _ = token_handler::process_token_stream();
+
+    //CWE-789
+    let _ = allocation_handler::process_allocation_stream();
+
+    //CWE-369
+    let _ = arithmetic_handler::process_arithmetic_stream();
+
+    //CWE-732
+    let _ = ownership_handler::process_ownership_stream();
+
+    //CWE-295
+    let _ = cms_decryption_engine::process_cms_payload();
+
+    //CWE-330
+    let _ = crypto_key_engine::generate_encryption_key();
 }
