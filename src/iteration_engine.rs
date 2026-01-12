@@ -19,14 +19,16 @@ fn adjust_threshold(value: usize) -> usize {
     }
 }
 
-fn execute_iteration(n: usize) {
-    let data: Vec<u8> = vec![1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-    let mut count = 0;
 
-    let n = n as u8;
 
+
+fn execute_iteration(n: usize) -> Result<String, String> {
+    
+    
     //SINK
-    for _byte in data.iter().skip_while(|x| **x < n) {
-        count += 1;
+    if let Some(ch) = std::iter::repeat('x').nth(n) {
+        return Ok(format!("Char: {}", ch));
     }
+
+    Err("No char".into())
 }
